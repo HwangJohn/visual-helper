@@ -24,7 +24,7 @@ ABRRRQAUUUUAf//Z'\"}"
 ```
 
 
-### step2: request data['img'] 의 text데이터를 Imagecaptioning model로 inference
+### step2: request data['img'] 의 text데이터를 ImageCaptioning model로 inference
 ```python
 # inference
 caption = evaluate(img)
@@ -65,7 +65,7 @@ tensorflow==2.1.0
 $ python visual_helper_be/manage.py runserver
 ```
 
-2-1. Swagger Documentation
+2.1. Swagger Documentation
 http://localhost:8000/swagger/v1
 
 ## Contributing Members

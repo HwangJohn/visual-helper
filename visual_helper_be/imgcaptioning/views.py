@@ -7,7 +7,11 @@ from drf_yasg import openapi
 import base64
 import numpy as np
 import cv2
+import os
+import six
+from google.cloud import translate_v2 as translate
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS']="credential.json"
 
 # Create your views here.
 class ImageCaptioning(APIView): 
@@ -36,12 +40,53 @@ class ImageCaptioning(APIView):
                 result = img.shape
             except Exception as e:
                 print(e)
-                result = "not valid"
+                result = "not valid image"
         else:
             result = "request method must be POST"
+            return Response({"result":result}, content_type=u"application/json; charset=utf-8")
 
-        # model load
 
         # inference
+        caption = evaluate(img)
 
-        return Response({"shape":result}, content_type=u"application/json; charset=utf-8")
+        # translation
+        ## 환경변수에 GOOGLE_APPLICATION_CREDENTIALS 옵션이 셋팅되어있어야 함
+        ## https://cloud.google.com/translate/docs/basic/setup-basic
+        result = google_translation(caption)
+
+        return Response({"result":result}, content_type=u"application/json; charset=utf-8")
+
+def google_translation(text:str) -> str:
+    """ translating en to ko
+        입력: 영문 캡셔닝 결과
+        출력: 한글 번역 결과 
+    """
+    try:
+        # target lan을 한국어로 고정
+        target = "ko"
+
+        translate_client = translate.Client()
+
+        if isinstance(text, six.binary_type):
+            text = text.decode('utf-8')
+
+        # Text can also be a sequence of strings, in which case this method
+        # will return a sequence of results for each text.
+        result = translate_client.translate(
+            text, target_language=target)
+
+        print(u'Text: {}'.format(result['input']))
+        print(u'Translation: {}'.format(result['translatedText']))
+        print(u'Detected source language: {}'.format(
+            result['detectedSourceLanguage']))
+    except Exception as e:
+        print(e)
+        return "Error, not translated"
+
+    return result['translatedText']
+
+def evaluate(img:np.array)->str:
+    """ Image Captioning
+        입력: np.array uint8 이미지 데이터
+        출력: str caption 데이터
+    """

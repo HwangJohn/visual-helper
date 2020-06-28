@@ -68,4 +68,4 @@ $ python visual_helper_be/manage.py runserver
 ## Contributing Members
 |Name     |  e-mail   |
 |---------|-----------------|
-|[John Hwang](https://github.com/[github handle])| angelic805@gmail.com        |
+|[John Hwang](https://github.com/HwangJohn)| angelic805@gmail.com        |

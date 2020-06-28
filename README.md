@@ -17,6 +17,7 @@ This project is a part of the [my-little-ml-ops](https://www.facebook.com/groups
 데이터 소스: COCO dataset
 
 ### step 1: Base64형식의 이미지 String을 Rest api를 통해 입력으로 받음
+![postman sample](https://drive.google.com/file/d/1aPXfOh9sQVrdRmu8ejy3XsLfPT0dFUIB/view?usp=sharing)
 ```shell
 curl -X POST "http://localhost:8000/imgcaptioning/predict" -H  "accept: application/json" -H  "Content-Type: application/json" -H  "X-CSRFToken: kpIdgr6SJIQSbnO6AkrGioMs15svGivnGh6FsmC4Tfym6k8detGf4Y60UKqx80G7" -d "{  \"img\": \"b'/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/
 ...

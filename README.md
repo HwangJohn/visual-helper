@@ -63,7 +63,7 @@ tensorflow==2.1.0
 2. Run Django server
 ```shell
 $ python visual_helper_be/manage.py runserver
-```5. Inference
+```
 
 ## Contributing Members
 |Name     |  e-mail   |

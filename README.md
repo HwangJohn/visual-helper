@@ -3,7 +3,7 @@ This project is a part of the [my-little-ml-ops](https://www.facebook.com/groups
 
 
 ## Project Objective
-이 프로젝트의 목적은 딥러닝 컴퓨터 비전 기술을 이용해서 시각장애인의 일상생활을 돕는 것입니다.
+이 프로젝트의 목적은 딥러닝 컴퓨터 비전 기술과 자연어 처리 기술을 이용해서 시각장애인의 일상생활을 돕는 것입니다.
 
 ### Methods Used
 * Django
